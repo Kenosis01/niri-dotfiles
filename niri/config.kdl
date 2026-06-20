@@ -1,0 +1,64 @@
+// Niri configuration file styled with Cursor Design Principles
+
+// Input device configuration
+input {
+    keyboard {
+        xkb {
+            // Layouts
+        }
+    }
+}
+
+// Window layout and styling
+layout {
+    gaps 16
+
+    center-focused-column "never"
+
+    // Focus ring and borders
+    focus-ring {
+        // Active: Ink (#26251e)
+        active-color "#26251e"
+        // Inactive: Hairline Strong (#cfcdc4)
+        inactive-color "#cfcdc4"
+        width 1
+    }
+
+    border {
+        active-color "#26251e"
+        inactive-color "#cfcdc4"
+        width 1
+    }
+
+    // Smooth native rounded corners
+    default-workspace-clear {
+        geometry-corner-radius 12
+        clip-to-geometry true
+    }
+}
+
+// Keybindings (Windows Translation schema)
+binds {
+    // Application Launching
+    Mod+S { spawn "fuzzel"; }
+    Mod+E { spawn "thunar"; }
+    Mod+T { spawn "foot"; }
+
+    // Hardware Control (Direct mapping)
+    F2 { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    F3 { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    F6 { spawn "brightnessctl" "set" "5%-"; }
+    F7 { spawn "brightnessctl" "set" "5%+"; }
+
+    // Window Management
+    Alt+F4 { close-window; }
+
+    // Snap/Focus columns
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}

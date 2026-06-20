@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch Downloads folder for new files
+
+[Path]
+PathModified=%h/Downloads
+MakeDirectory=yes
+
+[Install]
+WantedBy=default.target

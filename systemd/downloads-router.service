@@ -1,0 +1,6 @@
+[Unit]
+Description=Route Downloads to appropriate folders
+
+[Service]
+Type=oneshot
+ExecStart=%h/scripts/route-downloads.sh

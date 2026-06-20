@@ -1,0 +1,47 @@
+/* Ironbar styling based on Cursor Design Principles */
+* {
+    /* Substitute for CursorGothic for UI */
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+window#ironbar {
+    /* Flat canvas: Warm cream (#f7f7f4) */
+    background-color: #f7f7f4;
+    /* Text: Ink (#26251e) */
+    color: #26251e;
+    /* Full width, no floating margins, no depth */
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #e6e5e0; /* Hairline divider */
+    border-radius: 0;
+}
+
+.workspaces .item {
+    padding: 4px 12px;
+    margin: 4px;
+    border-radius: 8px; /* Compact developer dialect */
+}
+
+.workspaces .item.focused {
+    /* Primary CTA background: Cursor Orange (#f54e00) */
+    background-color: #f54e00;
+    color: #ffffff; /* On Primary */
+}
+
+.workspaces .item:not(.focused):hover {
+    background-color: #fafaf7; /* Canvas soft */
+}
+
+.clock {
+    font-weight: 400; /* Magazine voice, never bold */
+}
+
+.sys_info {
+    /* Code surfaces use JetBrains Mono */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding-right: 16px;
+    color: #5a5852; /* Body text */
+}
