@@ -1,6 +1,11 @@
-// Niri configuration file styled with Cursor Design Principles
+// Niri configuration file styled with Cursor Design Principles and Hybrid Auto-Theming
 
-// Input device configuration
+// Execute on startup
+spawn-at-startup "swww-daemon"
+spawn-at-startup "ironbar"
+// Initial theme loading (fallback to a dark wallpaper if it exists)
+spawn-at-startup "/bin/bash" "-c" "~/.config/scripts/change-wallpaper.sh ~/Pictures/Wallpapers/Dark/cursor_ink_lavender.png"
+
 input {
     keyboard {
         xkb {
@@ -9,32 +14,40 @@ input {
     }
 }
 
-// Window layout and styling
 layout {
     gaps 16
 
     center-focused-column "never"
 
+    default-column-width { proportion 0.5; }
+
     // Focus ring and borders
+    // Default fallback to Cursor Orange / Hairline
     focus-ring {
-        // Active: Ink (#26251e)
-        active-color "#26251e"
-        // Inactive: Hairline Strong (#cfcdc4)
+        active-color "#f54e00"
         inactive-color "#cfcdc4"
         width 1
     }
 
     border {
-        active-color "#26251e"
+        active-color "#f54e00"
         inactive-color "#cfcdc4"
         width 1
     }
 
-    // Smooth native rounded corners
+    // Smooth native rounded corners for flat transparency depth
     default-workspace-clear {
         geometry-corner-radius 12
         clip-to-geometry true
     }
+}
+
+// Window rules for transparency and geometry
+window-rule {
+    // Enable flat transparency to provide depth without blur
+    opacity 0.95
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
 // Keybindings (Windows Translation schema)
@@ -56,9 +69,7 @@ binds {
     // Snap/Focus columns
     Mod+Left { focus-column-left; }
     Mod+Right { focus-column-right; }
-}
 
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    // Consume window into column to allow vertical stacking
+    Mod+V { consume-window-into-column; }
 }

@@ -1,4 +1,6 @@
-/* Ironbar styling based on Cursor Design Principles */
+/* Ironbar styling based on Cursor Design Principles and dynamic theming */
+@import "theme.css";
+
 * {
     /* Substitute for CursorGothic for UI */
     font-family: 'Inter', system-ui, sans-serif;
@@ -7,15 +9,11 @@
 }
 
 window#ironbar {
-    /* Flat canvas: Warm cream (#f7f7f4) */
-    background-color: #f7f7f4;
-    /* Text: Ink (#26251e) */
-    color: #26251e;
-    /* Full width, no floating margins, no depth */
-    margin: 0;
-    border: none;
-    border-bottom: 1px solid #e6e5e0; /* Hairline divider */
-    border-radius: 0;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    margin: 8px 16px; /* Floating with transparency */
+    border-radius: 12px;
+    border: 1px solid var(--hairline-color);
 }
 
 .workspaces .item {
@@ -25,13 +23,12 @@ window#ironbar {
 }
 
 .workspaces .item.focused {
-    /* Primary CTA background: Cursor Orange (#f54e00) */
-    background-color: #f54e00;
-    color: #ffffff; /* On Primary */
+    background-color: var(--accent-color);
+    color: var(--bg-color);
 }
 
 .workspaces .item:not(.focused):hover {
-    background-color: #fafaf7; /* Canvas soft */
+    background-color: var(--hairline-color);
 }
 
 .clock {
@@ -43,5 +40,5 @@ window#ironbar {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     padding-right: 16px;
-    color: #5a5852; /* Body text */
+    color: var(--fg-color);
 }
