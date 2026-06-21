@@ -1,6 +1,6 @@
 {
     "position": "top",
-    "height": 32,
+    "height": 40,
     "start": [
         {
             "type": "workspaces"
@@ -9,16 +9,23 @@
     "center": [
         {
             "type": "clock",
-            "format": "%a %b %d  %H:%M"
+            "format": "%a %b %d  %H:%M:%S"
         }
     ],
     "end": [
         {
-            "type": "tray"
+            "type": "sys_info",
+            "format": [
+                "CPU: {cpu_percent}%",
+                "RAM: {memory_percent}%",
+                "Temp: {temp_c}°C"
+            ]
         },
         {
-            "type": "sys_info",
-            "format": ["{cpu_percent}%", "{memory_percent}%"]
+            "type": "network"
+        },
+        {
+            "type": "tray"
         }
     ]
 }

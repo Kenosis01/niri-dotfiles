@@ -1,4 +1,4 @@
-// Niri configuration file styled with Cursor Design Principles and Hybrid Auto-Theming
+// Niri configuration file styled with Cursor Design Principles, Hybrid Auto-Theming, and Fluid macOS UI physics
 
 // Execute on startup
 spawn-at-startup "swww-daemon"
@@ -35,6 +35,15 @@ layout {
         width 1
     }
 
+    // Depth mechanics: Native soft offset shadows for verticality
+    shadow {
+        on
+        softness 30
+        spread 0
+        offset x=0 y=10
+        color "#00000080"
+    }
+
     // Smooth native rounded corners for flat transparency depth
     default-workspace-clear {
         geometry-corner-radius 12
@@ -44,10 +53,31 @@ layout {
 
 // Window rules for transparency and geometry
 window-rule {
-    // Enable flat transparency to provide depth without blur
+    // Glassmorphism mechanics: Transparency relying on cached static wallpaper blur
     opacity 0.95
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+// Physics of Fluidity: Spring mass and exponential easing
+animations {
+    horizontal-view-center {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+
+    workspace-switch {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+
+    window-open {
+        duration-ms 250
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 250
+        curve "ease-out-expo"
+    }
 }
 
 // Keybindings (Windows Translation schema)

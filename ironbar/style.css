@@ -12,14 +12,23 @@ window#ironbar {
     background-color: var(--bg-color);
     color: var(--fg-color);
     margin: 8px 16px; /* Floating with transparency */
-    border-radius: 12px;
+    /* Pill-shaped, circular rounded look */
+    border-radius: 9999px;
     border: 1px solid var(--hairline-color);
+    padding: 0 16px;
+}
+
+/* Base pill shape for modules */
+.module {
+    padding: 4px 16px;
+    margin: 4px;
+    border-radius: 9999px;
 }
 
 .workspaces .item {
-    padding: 4px 12px;
-    margin: 4px;
-    border-radius: 8px; /* Compact developer dialect */
+    padding: 4px 16px;
+    margin: 4px 2px;
+    border-radius: 9999px; /* Pill shaped items */
 }
 
 .workspaces .item.focused {
@@ -33,12 +42,22 @@ window#ironbar {
 
 .clock {
     font-weight: 400; /* Magazine voice, never bold */
+    padding: 4px 16px;
+    background-color: transparent;
 }
 
-.sys_info {
+.sys_info, .network {
     /* Code surfaces use JetBrains Mono */
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    padding-right: 16px;
+    padding: 4px 12px;
     color: var(--fg-color);
+}
+
+.sys_info label {
+    margin: 0 4px;
+}
+
+.network {
+    margin-right: 8px;
 }
