@@ -87,6 +87,9 @@ binds {
     Mod+E { spawn "thunar"; }
     Mod+T { spawn "foot"; }
 
+    // Utilities
+    Mod+W { spawn "~/.config/scripts/select-wallpaper.sh"; }
+
     // Hardware Control (Direct mapping)
     F2 { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
     F3 { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }

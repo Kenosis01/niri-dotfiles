@@ -2,18 +2,29 @@ import sys
 import os
 from PIL import Image
 
-def get_dominant_color(image_path):
+def get_dominant_color_and_luminance(image_path):
     img = Image.open(image_path).convert('RGB')
     # Resize for faster processing
     img = img.resize((150, 150))
+
+    # Calculate average luminance to determine light/dark mode
+    pixels = list(img.getdata())
+    total_lum = sum(0.2126 * r + 0.7152 * g + 0.0722 * b for r, g, b in pixels)
+    avg_lum = total_lum / len(pixels)
+
+    # Calculate dominant color
     colors = img.getcolors(22500)
     max_count = 0
     dominant_color = None
-    for count, color in colors:
-        if count > max_count:
-            max_count = count
-            dominant_color = color
-    return dominant_color
+    if colors:
+        for count, color in colors:
+            if count > max_count:
+                max_count = count
+                dominant_color = color
+    else:
+        dominant_color = (245, 78, 0) # Fallback to Cursor Orange
+
+    return dominant_color, avg_lum
 
 def luminance(r, g, b):
     # Standard relative luminance calculation
@@ -23,11 +34,10 @@ def rgb_to_hex(r, g, b):
     return f"{r:02x}{g:02x}{b:02x}"
 
 def generate_theme(wallpaper_path):
-    # Determine light or dark mode based on the directory path
-    abs_path = os.path.abspath(wallpaper_path)
-    is_light = "Light" in abs_path
+    dom_color, avg_lum = get_dominant_color_and_luminance(wallpaper_path)
 
-    dom_color = get_dominant_color(wallpaper_path)
+    # Dynamically determine light or dark mode based on image brightness
+    is_light = avg_lum > 128
 
     # Base Cursor design colors locked
     if is_light:

@@ -22,29 +22,20 @@ This environment strictly adheres to the Cursor Design System, mimicking its edi
 
 ## Hybrid Auto-Theming
 
-Rather than generating random color palettes that break the design system, this setup uses a hybrid auto-theming engine.
+Rather than generating random color palettes that break the design system, this setup uses a dynamic hybrid auto-theming engine powered by Python (Pillow).
 
-1. Base colors are fixed based on the active mode (Light or Dark).
-2. A lightweight, one-shot Python script extracts the dominant color from the current wallpaper.
-3. This extracted color replaces "Cursor Orange" to dynamically theme active window borders, terminal selections, and active workspaces.
-4. The script exits immediately after generation, leaving zero background processes running.
-
-## Directory Structure
-
-The theming script determines light or dark mode based on where you place your wallpapers:
-
-- ~/Pictures/Wallpapers/Light: Applying wallpapers from here triggers the Cream Canvas base theme.
-- ~/Pictures/Wallpapers/Dark: Applying wallpapers from here triggers the Ink base theme.
-
-Sample Cursor-inspired gradient wallpapers are provided in these directories upon installation.
+1. A lightweight, one-shot Python script calculates the average luminance of your selected wallpaper.
+2. If the wallpaper is bright, it locks the base system theme to Cursor Canvas (Light mode). If dark, it locks to Cursor Ink (Dark mode).
+3. It then extracts the dominant color from the wallpaper.
+4. This extracted color replaces "Cursor Orange" to dynamically theme active window borders, terminal selections, and active workspaces.
+5. The script exits immediately after generation, leaving zero background processes running.
 
 ## Installation
 
-Ensure your system is running Arch Linux (or a derivative) and execute the installer script. The script will install necessary dependencies, set up directories, and apply the default theme.
+Ensure your system is running Arch Linux (or a derivative) and execute the one-line installer script. The script will clone the repository, install necessary dependencies, set up directories, and apply the default theme.
 
 ```bash
-chmod +x install.sh
-./install.sh
+bash <(curl -s https://raw.githubusercontent.com/kenosis01/niri-dotfiles/main/install.sh)
 ```
 
 ## Usage
@@ -56,19 +47,14 @@ Keyboard bindings follow a familiar Windows layout schema:
 - Super + E: Open Thunar (File Explorer)
 - Super + T: Open Foot (Terminal)
 
+### Utilities
+- Super + W: Open Wallpaper Picker. This uses Fuzzel to list all images in your `~/Pictures` and `~/Downloads` directories. Selecting one will instantly apply it and dynamically re-theme your entire system.
+
 ### Window Management
 - Alt + F4: Close Active Window
 - Super + Left/Right/Up/Down: Focus directional columns/windows
-- Super + V: Consume window into column (vertical stacking)
+- Super + V: Consume window into column (vertical stacking for a grid-like layout in Niri's horizontal ribbon)
 
 ### Hardware Controls
 - F2 / F3: Volume Down / Up
 - F6 / F7: Brightness Down / Up
-
-## Changing Themes
-
-To change the wallpaper and automatically update the system theme, use the provided script:
-
-```bash
-~/.config/scripts/change-wallpaper.sh ~/Pictures/Wallpapers/Dark/your_wallpaper.jpg
-```
