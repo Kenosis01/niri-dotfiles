@@ -10,15 +10,13 @@ WALLPAPER="$1"
 # 1. Apply wallpaper
 swww img "$WALLPAPER" --transition-type fade
 
-# 2. Extract theme and generate configs
-python3 ~/.config/scripts/extract-theme.py "$WALLPAPER"
+# 2. Extract theme and inject using wallust
+wallust run "$WALLPAPER"
 
 # 3. Apply Niri borders dynamically
+chmod +x ~/.config/scripts/niri-theme.sh
 ~/.config/scripts/niri-theme.sh
 
 # 4. Reload components to apply new theme
-# Reload ironbar
 killall ironbar
 ironbar &
-
-# Reload fuzzel and foot (handled by including the theme file natively in their main configs, they will pick it up on next launch)

@@ -1,0 +1,11 @@
+# Wallust configuration
+
+backend = "fastkmeans"
+color_space = "lab"
+palette = "dark16"
+
+[templates]
+foot = { template = "foot.ini", target = "~/.config/foot/theme.ini" }
+fuzzel = { template = "fuzzel.ini", target = "~/.config/fuzzel/theme.ini" }
+ironbar = { template = "ironbar.css", target = "~/.config/ironbar/theme.css" }
+niri = { template = "niri.sh", target = "~/.config/scripts/niri-theme.sh" }

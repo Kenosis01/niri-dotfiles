@@ -1,0 +1,6 @@
+:root {
+  --bg-color: rgba({{background | rgb}}, 0.85);
+  --fg-color: {{foreground}};
+  --accent-color: {{color2}};
+  --hairline-color: {{color8}};
+}

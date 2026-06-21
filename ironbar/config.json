@@ -9,17 +9,29 @@
     "center": [
         {
             "type": "clock",
-            "format": "%a %b %d  %H:%M:%S"
+            "format": "%a %b %d  %H:%M",
+            "interval": 60000
         }
     ],
     "end": [
         {
             "type": "sys_info",
+            "interval": 15000,
             "format": [
                 "CPU: {cpu_percent}%",
                 "RAM: {memory_percent}%",
                 "Temp: {temp_c}°C"
             ]
+        },
+        {
+            "type": "custom",
+            "interval": 15000,
+            "cmd": "df -h / | awk 'NR==2 {print \"Disk: \" $5}'"
+        },
+        {
+            "type": "custom",
+            "interval": 15000,
+            "cmd": "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null | awk '{print \"Bat: \" $1 \"%\"}' || echo 'Bat: N/A'"
         },
         {
             "type": "network"

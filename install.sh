@@ -10,14 +10,14 @@ if [ ! -d "niri" ] && [ ! -d "foot" ]; then
 fi
 
 echo "Installing Wayland dependencies..."
-sudo pacman -S --needed --noconfirm niri foot fuzzel python python-pillow swww git
+sudo pacman -S --needed --noconfirm niri foot fuzzel python python-pillow swww git wallust
 
 echo "Installing Ironbar..."
 cargo install ironbar
 
 echo "Copying dotfiles to ~/.config..."
 mkdir -p ~/.config
-cp -r niri foot fuzzel ironbar scripts ~/.config/
+cp -r niri foot fuzzel ironbar scripts wallust ~/.config/
 
 # Move sample wallpapers to a standard location so the fallback works
 mkdir -p ~/.config/wallpapers/Light ~/.config/wallpapers/Dark
@@ -26,7 +26,6 @@ cp -r ~/Pictures/Wallpapers/* ~/.config/wallpapers/ 2>/dev/null || true
 
 echo "Setting permissions..."
 chmod +x ~/.config/scripts/change-wallpaper.sh
-chmod +x ~/.config/scripts/extract-theme.py
 chmod +x ~/.config/scripts/route-downloads.sh
 chmod +x ~/.config/scripts/select-wallpaper.sh
 
