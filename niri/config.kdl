@@ -46,11 +46,6 @@ layout {
         color "#00000080"
     }
 
-    // Smooth native rounded corners for flat transparency depth
-    default-workspace-clear {
-        geometry-corner-radius 12
-        clip-to-geometry true
-    }
 }
 
 // Window rules for transparency and geometry
@@ -63,10 +58,6 @@ window-rule {
 
 // Physics of Fluidity: Spring mass and exponential easing
 animations {
-    horizontal-view-center {
-        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
-    }
-
     workspace-switch {
         spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
     }
