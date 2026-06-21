@@ -3,6 +3,8 @@
 // Execute on startup
 spawn-at-startup "swww-daemon"
 spawn-at-startup "ironbar"
+// Clipboard Watcher
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 input {
     keyboard {
@@ -101,6 +103,12 @@ binds {
     Mod+Left { focus-column-left; }
     Mod+Right { focus-column-right; }
 
-    // Consume window into column to allow vertical stacking
-    Mod+V { consume-window-into-column; }
+    // Clipboard History (Win + V)
+    Mod+V { spawn "bash" "-c" "cliphist list | fuzzel --dmenu --prompt 'Clipboard 󰅍 ' | cliphist decode | wl-copy"; }
+
+    // Emoji Picker (Win + .)
+    Mod+Period { spawn "bash" "-c" "BEMOJI_PICKER_CMD='fuzzel --dmenu --prompt \"Emoji 󰞅 \"' bemoji -t"; }
+
+    // Re-bind consume-window-into-column to Shift+V since Mod+V is now clipboard
+    Mod+Shift+V { consume-window-into-column; }
 }

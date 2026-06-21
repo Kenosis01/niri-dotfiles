@@ -10,11 +10,11 @@ if [ ! -d "niri" ] && [ ! -d "foot" ]; then
 fi
 
 echo "Installing Wayland dependencies..."
-sudo pacman -S --needed --noconfirm base-devel niri foot fuzzel swww git wallust
+sudo pacman -S --needed --noconfirm base-devel niri foot fuzzel swww git wallust wl-clipboard cliphist
 
-echo "Installing Ironbar..."
-# Using yay to install the pre-compiled binary instead of building from source via cargo
-yay -S --noconfirm ironbar-bin
+echo "Installing AUR Packages (Ironbar, Bemoji)..."
+# Using yay to install pre-compiled/AUR packages
+yay -S --noconfirm ironbar-bin bemoji
 
 echo "Copying dotfiles to ~/.config..."
 mkdir -p ~/.config
