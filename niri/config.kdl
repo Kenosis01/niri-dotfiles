@@ -3,8 +3,6 @@
 // Execute on startup
 spawn-at-startup "swww-daemon"
 spawn-at-startup "ironbar"
-// Initial theme loading (fallback to a dark wallpaper if it exists)
-spawn-at-startup "/bin/bash" "-c" "~/.config/scripts/change-wallpaper.sh ~/Pictures/Wallpapers/Dark/cursor_ink_lavender.png"
 
 input {
     keyboard {
